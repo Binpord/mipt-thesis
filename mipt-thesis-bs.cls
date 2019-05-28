@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mipt-thesis}[2014/06/18 Class for the BS thesis in the MIPT]
+\ProvidesClass{mipt-thesis}[2019/01/21 Class for the BS thesis in the MIPT]
 
 %%%%%% Class options %%%%%
 \DeclareOption*{
@@ -7,7 +7,7 @@
 }
 \ProcessOptions\relax
 
-\LoadClass[a4paper,12pt]{book}
+\LoadClass[a4paper,12pt]{report}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% Useful packages %%%%%
@@ -16,6 +16,7 @@
 \RequirePackage{mathtext}
 % Fonts and lang
 \RequirePackage[T1,TS1,T2A]{fontenc}
+\RequirePackage{mathptmx}   % Times New Roman font
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english,russian]{babel}
 % Formatting
@@ -23,18 +24,21 @@
 \RequirePackage{setspace}
 \RequirePackage{indentfirst}
 \RequirePackage{fancyhdr}
-\RequirePackage{nopageno}
+%\RequirePackage{nopageno}
 \RequirePackage{tocloft}
 % Style file with additional packages
 \RequirePackage{mipt-thesis}
+% Titles
+\RequirePackage{titlesec}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% Set up correct formatting %%%%%
 \geometry{left=3cm}
-\geometry{right=2cm}
+\geometry{right=15mm}   % 2cm -> 1.5cm in 2019
 \geometry{top=2cm}
 \geometry{bottom=2cm}
-\onehalfspace
+\linespread{1.25}       % word 1.5 spacing, see
+                        % https://tex.stackexchange.com/questions/65849/confusion-onehalfspacing-vs-spacing-vs-word-vs-the-world
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% Some dark TeX magic %%%%%
@@ -141,6 +145,10 @@
                                      {-3.25ex\@plus -1ex \@minus -.2ex}%
                                      {1.5ex \@plus .2ex}%
                              {\normalfont\Large\sffamily\itshape\raggedright}}
+
+% No "Глава #" prefix
+\titleformat{\chapter}[display]
+{\normalfont\bfseries\centering}{}{0pt}{\large}
 %%%%%%%% Captions %%%%%%%%%%%%%%%%%%%%%%%%%%
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
@@ -153,24 +161,15 @@
   \fi
   \vskip\belowcaptionskip}
 
-%%%%%%%% Headings
-\fancypagestyle{miptthesis}{%
-    \fancyhf{}
-    \fancyhead[RO, LE]{\thepage}
-    \fancyhead[CO]{\leftmark}
-    \fancyhead[CE]{\rightmark}
-}
-\pagestyle{miptthesis}
-\renewcommand{\chaptermark}[1]{\markboth{\hfill\normalfont #1\hfill}{}}
-\renewcommand{\sectionmark}[1]{\markright{\hfill\large\itshape \S\thesection\quad #1\hfill}}
-\let\partmark=\chaptermark
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% Right TOC numbering %%%%%
 \renewcommand{\cftchapaftersnum}{.}
 \renewcommand{\cftsecaftersnum}{.}
 \renewcommand{\cftsubsecaftersnum}{.}
+%%%%% Center TOC header %%%%%%%
+\renewcommand{\cfttoctitlefont}{\hspace*{\fill}\large}
+\renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% Easier references %%%%%
@@ -178,69 +177,6 @@
 \newcommand{\picref}[1]{рис.~\ref{#1}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%% Titlepage and contents %%%%%
-% Set some "variables"
-\renewcommand{\author}[1]{\def\mtauthortext{#1}}
-\renewcommand{\title}[1]{\def\mttitletext{#1}}
-\newcommand{\groupnum}[1]{\def\mtgroupnumtext{#1}}
-\newcommand{\supervisor}[1]{\def\mtsupervisortext{#1}}
-\newcommand{\faculty}[1]{\def\mtfacultytext{#1}}
-\newcommand{\department}[1]{\def\mtdepartmenttext{#1}}
-
-\newcommand{\addemptypage}{%
-    \clearpage \mbox{} \clearpage
-}
-
-\renewcommand{\titlepage}{%
-    \pagestyle{empty}
-    \begin{center}
-        {\bf Министерство образования и науки Российской Федерации \\
-        Московский физико-технический институт (государственный
-        университет) \\ }
-        \vspace{1cm}
-
-
-        \mtfacultytext \\
-        \mtdepartmenttext \\
-
-        \vspace{3em}
-
-        Выпускная квалификационная работа бакалавра по направлению 010900
-        <<Прикладные математика и физика>>
-    \end{center}
-
-    \begin{center}
-        \vspace{\fill}
-        \singlespacing
-
-        \LARGE \mttitletext{}
-
-        \vspace{\fill}
-    \end{center}
-
-
-    \begin{flushright}
-        Студент \mtgroupnumtext{} группы \\
-        \mtauthortext{} \\
-        \vspace{2em}
-        Научный руководитель \\
-        \mtsupervisortext{} \\
-    \end{flushright}
-
-    \vspace{7em}
-
-    \begin{center}
-        Долгопрудный \\
-        \the\year{}
-    \end{center}
-
-}
-
-\newcommand{\titlecontents}{
-    \titlepage \addemptypage
-    \tableofcontents \addemptypage
-    \pagestyle{miptthesis}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page is being generated automatically when loading diploma to mipt.ru.
 
 \endinput
