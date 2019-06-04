@@ -47,7 +47,7 @@
 \addto\captionsrussian{\renewcommand{\listtablename}{Список таблиц}}
 \addto\captionsrussian{\renewcommand{\bibname}{Литература}}
 \addto\captionsrussian{\renewcommand{\indexname}{Index}}
-\addto\captionsrussian{\renewcommand{\figurename}{Рис.{}}}
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок{}}}
 \addto\captionsrussian{\renewcommand{\tablename}{Таблица}}
 \addto\captionsrussian{\renewcommand{\partname}{Часть}}
 \addto\captionsrussian{\renewcommand{\chaptername}{Глава}}
@@ -152,7 +152,7 @@
 %%%%%%%% Captions %%%%%%%%%%%%%%%%%%%%%%%%%%
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
-  \sbox\@tempboxa{#1. #2}%
+  \sbox\@tempboxa{#1 --- #2}%
   \ifdim \wd\@tempboxa >\hsize
     #1. #2\par
   \else
