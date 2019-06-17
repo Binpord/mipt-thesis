@@ -147,13 +147,13 @@
 
 % No "Глава #" prefix
 \titleformat{\chapter}[display]
-{\normalfont\bfseries\centering}{}{0pt}{\large}
+{\normalfont\centering}{}{0pt}{\large}
 
 \titleformat{\section}
-{\normalfont\bfseries\centering}{\thesection}{7pt}{}{\large}
+{\normalfont\centering}{\thesection}{7pt}{}{\large}
 
 \titleformat{\subsection}
-{\normalfont\bfseries\centering}{\thesubsection}{7pt}{}{\large}
+{\normalfont\centering}{\thesubsection}{7pt}{}{\large}
 %%%%%%%% Captions %%%%%%%%%%%%%%%%%%%%%%%%%%
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
