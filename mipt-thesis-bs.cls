@@ -11,14 +11,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% Useful packages %%%%%
-% Math packages, should be loaded before fontenc and babel for Cyrillic
-\RequirePackage{amsmath,amsthm,amssymb}
-\RequirePackage{mathtext}
 % Fonts and lang
-\RequirePackage[T1,TS1,T2A]{fontenc}
-\RequirePackage{mathptmx}   % Times New Roman font
+\RequirePackage[T1,T2A]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english,russian]{babel}
+\RequirePackage{tempora}     % Times New Roman with Cyrillic support
+\RequirePackage{newtxmath}   % Times New Roman font in math
+
 % Formatting
 \RequirePackage{geometry}
 \RequirePackage{setspace}
